@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245713460586518054}
   - component: {fileID: 2444169908489930665}
+  - component: {fileID: 3067227128607361326}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -47,7 +48,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -55,6 +56,18 @@ CapsuleCollider:
   m_Height: 1.5689634
   m_Direction: 1
   m_Center: {x: 0.05117616, y: 0.2844826, z: 0.00085750944}
+--- !u!114 &3067227128607361326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564566073761341565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6503e899354a745a1a1f22b65d1fd26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordHitbox
 --- !u!1 &3708822615260791854
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,6 +81,7 @@ GameObject:
   - component: {fileID: 8433314033918690032}
   - component: {fileID: 7227267123421591170}
   - component: {fileID: 603865216295993864}
+  - component: {fileID: 9052631080946840225}
   - component: {fileID: 4961567827327457230}
   - component: {fileID: 8830346902371654477}
   m_Layer: 0
@@ -191,6 +205,19 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   gravity: -9.81
   jumpHeight: 1
+--- !u!114 &9052631080946840225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708822615260791854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2766c2041624ce98a6971cf7ced2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CombatController
+  swordHitbox: {fileID: 2564566073761341565}
 --- !u!114 &4961567827327457230
 MonoBehaviour:
   m_ObjectHideFlags: 0
