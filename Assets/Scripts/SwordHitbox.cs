@@ -10,7 +10,8 @@ public class SwordHitbox : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Hit enemy");
+            Health health = other.GetComponent<Health>();
+            health.TakeDamage(10);
         }
     }
 }
