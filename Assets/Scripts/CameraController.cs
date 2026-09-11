@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    InputSystem_Actions controls;
-
-    [SerializeField]
-    private GameObject focalPoint;
+    [SerializeField] private GameObject focalPoint;
+    [SerializeField] private InputController inputController;
 
     private float yaw;
     private float pitch;
@@ -15,8 +13,6 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        controls = new InputSystem_Actions();
-        controls.Player.Look.Enable();
 
         offset = transform.position - focalPoint.transform.position;
 
@@ -33,7 +29,7 @@ public class CameraController : MonoBehaviour
 
     private void RotateCamera()
     {
-        Vector2 look = controls.Player.Look.ReadValue<Vector2>();
+        Vector2 look = inputController.Controls.Player.Look.ReadValue<Vector2>();
 
         yaw += look.x * mouseSensitivity;
         pitch -= look.y * mouseSensitivity;

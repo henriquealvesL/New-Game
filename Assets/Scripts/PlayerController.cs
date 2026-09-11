@@ -2,35 +2,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private InputSystem_Actions controls;
+    private InputController inputController;
     private CharacterController characterController;
 
-    [SerializeField]
-    private float moveSpeed = 5f;
-    [SerializeField]
-    private float turnSpeed = 10f;
-    [SerializeField]
-    private Transform cameraTransform;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float turnSpeed = 10f;
+    [SerializeField] private Transform cameraTransform;
 
-    [SerializeField]
-    private float gravity = -9.81f;
-
-    [SerializeField]
-    private float jumpHeight = 2f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float jumpHeight = 2f;
 
     private float verticalVelocity;
     private Vector2 moveInput;
 
     void Awake()
     {
-        controls = new InputSystem_Actions();
         characterController = GetComponent<CharacterController>();
-
-        controls.Player.Enable();
+        inputController = GetComponent<InputController>();
     }
     void Update()
     {
-        moveInput = controls.Player.Move.ReadValue<Vector2>();
+        moveInput = inputController.Controls.Player.Move.ReadValue<Vector2>();
         HandleGravity();
         HandleJump();
         MovePlayer();
@@ -65,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
-        if (controls.Player.Jump.triggered && characterController.isGrounded)
+        if (inputController.Controls.Player.Jump.triggered && characterController.isGrounded)
         {
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
