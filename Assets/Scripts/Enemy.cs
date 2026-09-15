@@ -1,10 +1,14 @@
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 4f;
     [SerializeField] private float knockBackForce = 10f;
+    [SerializeField] private float atackRange = 2f;
+    [SerializeField] private float atackCooldown = 1f;
+    private float atackCooldownTimer = 0;
 
     private CharacterController characterController;
     private Health health;
@@ -30,7 +34,14 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (!isKnockedBack) FollowPlayer();
+        float distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+        bool isOnRange = distanceFromPlayer <= atackRange;
+
+        if (isKnockedBack)
+            return;
+
+        if (isOnRange) AtackPlayer();
+        else FollowPlayer();
     }
 
     private void FollowPlayer()
@@ -41,6 +52,16 @@ public class Enemy : MonoBehaviour
         Vector3 followDirection = new Vector3(targetDirection.x, 0f, targetDirection.z);
 
         characterController.Move(followDirection * Time.deltaTime * speed);
+    }
+
+    private void AtackPlayer()
+    {
+        atackCooldownTimer -= Time.deltaTime;
+
+        if (atackCooldownTimer > 0) return;
+
+        Debug.Log("Atacou");
+        atackCooldownTimer = atackCooldown;
     }
 
     private void TakeKnockback()
