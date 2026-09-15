@@ -4,6 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public event Action OnDeath;
+    public event Action<int, int> OnHealthChanged;
     private int maxHealth = 100;
     private int currentHealth;
 
@@ -19,7 +20,10 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            return;
         }
+
+        OnHealthChanged.Invoke(currentHealth, maxHealth);
     }
 
     private void Die()
