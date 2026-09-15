@@ -5,6 +5,7 @@ public class Health : MonoBehaviour
 {
     public event Action OnDeath;
     public event Action<int, int> OnHealthChanged;
+    public event Action OnDamageTaken;
     private int maxHealth = 100;
     private int currentHealth;
 
@@ -24,6 +25,7 @@ public class Health : MonoBehaviour
         }
 
         OnHealthChanged.Invoke(currentHealth, maxHealth);
+        OnDamageTaken.Invoke();
     }
 
     private void Die()
