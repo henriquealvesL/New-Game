@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float knockBackForce = 10f;
     [SerializeField] private float atackRange = 2f;
     [SerializeField] private float atackCooldown = 1f;
+    [SerializeField] private GameObject swordHitbox;
     private float atackCooldownTimer = 0;
 
     private CharacterController characterController;
@@ -50,6 +51,7 @@ public class Enemy : MonoBehaviour
 
         Vector3 targetDirection = (player.transform.position - transform.position).normalized;
         Vector3 followDirection = new Vector3(targetDirection.x, 0f, targetDirection.z);
+        transform.rotation = Quaternion.LookRotation(followDirection);
 
         characterController.Move(followDirection * Time.deltaTime * speed);
     }
@@ -60,8 +62,15 @@ public class Enemy : MonoBehaviour
 
         if (atackCooldownTimer > 0) return;
 
+        swordHitbox.SetActive(true);
+        Invoke(nameof(DisableSwordHitbox), 0.2f);
         Debug.Log("Atacou");
         atackCooldownTimer = atackCooldown;
+    }
+
+    private void DisableSwordHitbox()
+    {
+        swordHitbox.SetActive(false);
     }
 
     private void TakeKnockback()

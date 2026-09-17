@@ -13,5 +13,12 @@ public class SwordHitbox : MonoBehaviour
             Health health = other.GetComponent<Health>();
             health.TakeDamage(10);
         }
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Hitou o player");
+            Health health = other.GetComponent<Health>();
+            health.TakeDamage(5);
+        }
     }
 }

@@ -83,10 +83,11 @@ GameObject:
   - component: {fileID: 603865216295993864}
   - component: {fileID: 9052631080946840225}
   - component: {fileID: 4961567827327457230}
+  - component: {fileID: 7119387519568859091}
   - component: {fileID: 8830346902371654477}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +231,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686a1ab1252424e4ab2ebb8e20ac7a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputController
+--- !u!114 &7119387519568859091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3708822615260791854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a334810ebe2840e2b816ce5a274dbff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!143 &8830346902371654477
 CharacterController:
   m_ObjectHideFlags: 0

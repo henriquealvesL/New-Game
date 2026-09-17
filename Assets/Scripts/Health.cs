@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
         }
 
         OnHealthChanged.Invoke(currentHealth, maxHealth);
-        OnDamageTaken.Invoke();
+        OnDamageTaken?.Invoke();
     }
 
     private void Die()
