@@ -151,7 +151,6 @@ MonoBehaviour:
   spawnManager: {fileID: 1930110844}
   playerHealth: {fileID: 5640306060654732397}
   gameOverPanel: {fileID: 1986801720}
-  isGameOver: 0
 --- !u!4 &70770869
 Transform:
   m_ObjectHideFlags: 0
@@ -1722,8 +1721,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279835092
+  m_fontColor: {r: 0.8301887, g: 0.09789959, b: 0.09789959, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
