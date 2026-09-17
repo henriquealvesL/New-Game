@@ -57,6 +57,9 @@ public class GameManager : MonoBehaviour
         OnGameOver.Invoke();
 
         gameOverPanel.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void RestartGame()
