@@ -6,8 +6,16 @@ public class InputController : MonoBehaviour
 
     void Awake()
     {
+        GameManager.OnGameOver += HandleGameOver;
+
         Controls = new InputSystem_Actions();
         Controls.Player.Enable();
     }
 
+    void OnDisable()
+    {
+        GameManager.OnGameOver -= HandleGameOver;
+    }
+
+    private void HandleGameOver() => Controls.Player.Disable();
 }

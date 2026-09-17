@@ -20,20 +20,11 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            OnDeath.Invoke();
             return;
         }
 
         OnHealthChanged.Invoke(currentHealth, maxHealth);
         OnDamageTaken?.Invoke();
     }
-
-    private void Die()
-    {
-        Debug.Log("Morreu");
-        OnDeath?.Invoke();
-        Destroy(gameObject);
-    }
-
-
 }

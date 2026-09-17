@@ -26,11 +26,15 @@ public class Enemy : MonoBehaviour
     void OnEnable()
     {
         health.OnDamageTaken += TakeKnockback;
+        health.OnDeath += Die;
+        GameManager.OnGameOver += HandleGameOver;
     }
 
     void OnDisable()
     {
         health.OnDamageTaken -= TakeKnockback;
+        health.OnDeath -= Die;
+        GameManager.OnGameOver -= HandleGameOver;
     }
 
     void Update()
@@ -98,4 +102,11 @@ public class Enemy : MonoBehaviour
 
         isKnockedBack = false;
     }
+
+    private void HandleGameOver()
+    {
+        enabled = false;
+    }
+
+    private void Die() => Destroy(gameObject);
 }
