@@ -755,7 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   speed: 4
   knockBackForce: 10
-  atackRange: 2
+  atackRange: 1.5
   atackCooldown: 1
   swordHitbox: {fileID: 2646949615324716936}
   player: {fileID: 0}

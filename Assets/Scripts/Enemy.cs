@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 4f;
     [SerializeField] private float knockBackForce = 10f;
-    [SerializeField] private float atackRange = 2f;
+    [SerializeField] private float atackRange = 1.5f;
     [SerializeField] private float atackCooldown = 1f;
     [SerializeField] private GameObject swordHitbox;
     private float atackCooldownTimer = 0;
