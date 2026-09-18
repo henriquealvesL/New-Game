@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
         Vector3 cameraForward = new Vector3(cameraTransform.forward.x, 0f, cameraTransform.forward.z).normalized;
         Vector3 cameraRight = new Vector3(cameraTransform.right.x, 0f, cameraTransform.right.z).normalized;
 
-        Vector3 movement = (cameraRight * moveInput.x + cameraForward * moveInput.y).normalized;
-        movement.y = verticalVelocity;
+        Vector3 horizontal = (cameraRight * moveInput.x + cameraForward * moveInput.y).normalized * moveSpeed;
+        Vector3 velocity = horizontal + Vector3.up * verticalVelocity;
 
         float cameraYaw = cameraTransform.eulerAngles.y;
 
@@ -65,11 +65,13 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = targetRotation;
 
-        characterController.Move(movement * moveSpeed * Time.deltaTime);
+        characterController.Move(velocity * Time.deltaTime);
     }
 
     private void HandleGravity()
     {
+        if (isDashing) return;
+
         if (characterController.isGrounded && verticalVelocity < 0f)
         {
             verticalVelocity = -2f;
@@ -80,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
+        if (isDashing) return;
+
         if (inputController.Controls.Player.Jump.triggered && characterController.isGrounded)
         {
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -89,7 +93,9 @@ public class PlayerController : MonoBehaviour
     private void HandleDash()
     {
         dashTimer -= Time.deltaTime;
-        characterController.Move(dashDirection * Time.deltaTime * dashSpeed);
+
+        Vector3 velocity = dashDirection * dashSpeed + Vector3.up * verticalVelocity;
+        characterController.Move(velocity * Time.deltaTime);
 
         if (dashTimer <= 0)
         {

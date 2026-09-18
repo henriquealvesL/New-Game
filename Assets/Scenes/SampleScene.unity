@@ -2076,6 +2076,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 603865216295993864, guid: 45469f96d808b4cadbd1723e52c174ad, type: 3}
+      propertyPath: gravity
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 603865216295993864, guid: 45469f96d808b4cadbd1723e52c174ad, type: 3}
+      propertyPath: jumpHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 603865216295993864, guid: 45469f96d808b4cadbd1723e52c174ad, type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 330585546}
