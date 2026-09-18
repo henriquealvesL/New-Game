@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Speed control")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float turnSpeed = 10f;
 
     [Header("Camera")]
     [SerializeField] private Transform cameraTransform;
