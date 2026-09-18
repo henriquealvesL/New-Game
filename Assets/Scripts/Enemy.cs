@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float atackRange = 1.5f;
     [SerializeField] private float atackCooldown = 1f;
     [SerializeField] private GameObject swordHitbox;
-    private float nextAtackTimer = 0;
+    private float nextAtackTime = 0;
 
     private CharacterController characterController;
     private Health health;
@@ -61,9 +61,9 @@ public class Enemy : MonoBehaviour
 
     private void AtackPlayer()
     {
-        if (Time.time < nextAtackTimer) return;
+        if (Time.time < nextAtackTime) return;
 
-        nextAtackTimer = Time.time + atackCooldown;
+        nextAtackTime = Time.time + atackCooldown;
 
         swordHitbox.SetActive(true);
         Invoke(nameof(DisableSwordHitbox), 0.2f);
