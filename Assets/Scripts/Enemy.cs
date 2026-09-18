@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float atackRange = 1.5f;
     [SerializeField] private float atackCooldown = 1f;
     [SerializeField] private GameObject swordHitbox;
-    private float atackCooldownTimer = 0;
+    private float nextAtackTimer = 0;
 
     private CharacterController characterController;
     private Health health;
@@ -62,14 +61,13 @@ public class Enemy : MonoBehaviour
 
     private void AtackPlayer()
     {
-        atackCooldownTimer -= Time.deltaTime;
+        if (Time.time < nextAtackTimer) return;
 
-        if (atackCooldownTimer > 0) return;
+        nextAtackTimer = Time.time + atackCooldown;
 
         swordHitbox.SetActive(true);
         Invoke(nameof(DisableSwordHitbox), 0.2f);
         Debug.Log("Atacou");
-        atackCooldownTimer = atackCooldown;
     }
 
     private void DisableSwordHitbox()
