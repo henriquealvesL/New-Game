@@ -7,6 +7,8 @@ public class CombatController : MonoBehaviour
 
     [SerializeField] GameObject swordHitbox;
 
+    public bool IsAttacking => isAttacking;
+
     private bool comboQueued;
     private bool isAttacking;
     private int comboStep;
@@ -19,7 +21,7 @@ public class CombatController : MonoBehaviour
 
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle") && isAttacking && !animator.IsInTransition(0))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion") && isAttacking && !animator.IsInTransition(0))
         {
             ResetAttack();
         }

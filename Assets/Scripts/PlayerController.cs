@@ -4,6 +4,8 @@ public class PlayerController : MonoBehaviour
 {
     private InputController inputController;
     private CharacterController characterController;
+    private Animator animator;
+    private CombatController combatController;
 
     [Header("Speed control")]
     [SerializeField] private float moveSpeed = 5f;
@@ -33,10 +35,14 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         inputController = GetComponent<InputController>();
+        combatController = GetComponent<CombatController>();
+        animator = GetComponentInChildren<Animator>();
     }
+
     void Update()
     {
         moveInput = inputController.Controls.Player.Move.ReadValue<Vector2>();
+        animator.SetFloat("Speed", Mathf.Clamp01(moveInput.magnitude), 0.1f, Time.deltaTime);
 
         HandleDashInput();
         HandleGravity();
@@ -46,6 +52,8 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (combatController.IsAttacking) return;
+
         if (isDashing)
         {
             HandleDash();
