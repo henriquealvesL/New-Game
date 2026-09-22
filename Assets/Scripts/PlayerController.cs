@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Speed control")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 12f;
 
     [Header("Camera")]
     [SerializeField] private Transform cameraTransform;
@@ -66,11 +67,11 @@ public class PlayerController : MonoBehaviour
         Vector3 horizontal = (cameraRight * moveInput.x + cameraForward * moveInput.y).normalized * moveSpeed;
         Vector3 velocity = horizontal + Vector3.up * verticalVelocity;
 
-        float cameraYaw = cameraTransform.eulerAngles.y;
-
-        Quaternion targetRotation = Quaternion.Euler(0f, cameraYaw, 0f);
-
-        transform.rotation = targetRotation;
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            Quaternion target = Quaternion.LookRotation(horizontal.normalized, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, rotationSpeed * Time.deltaTime);
+        }
 
         characterController.Move(velocity * Time.deltaTime);
     }

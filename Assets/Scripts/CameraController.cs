@@ -20,8 +20,8 @@ public class CameraController : MonoBehaviour
 
         Vector3 angles = transform.eulerAngles;
 
-        yaw = angles.x;
-        pitch = angles.y;
+        yaw = angles.y;
+        pitch = angles.x;
     }
 
     void LateUpdate()
