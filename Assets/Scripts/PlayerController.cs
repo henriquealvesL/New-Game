@@ -113,8 +113,10 @@ public class PlayerController : MonoBehaviour
             isDashing = true;
             dashTimer = dashDuration;
             nextDashTime = Time.time + dashCooldown;
+            animator.SetTrigger("Dash");
 
             dashDirection = moveInput.sqrMagnitude > 0.01f ? GetCameraRelativeDirection() : transform.forward;
+            transform.rotation = Quaternion.LookRotation(dashDirection.normalized, Vector3.up);
         }
     }
 
