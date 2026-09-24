@@ -53,8 +53,6 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (combatController.IsAttacking) return;
-
         if (isDashing)
         {
             HandleDash();

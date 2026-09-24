@@ -6,6 +6,7 @@ public class CombatController : MonoBehaviour
     Animator animator;
 
     [SerializeField] GameObject swordHitbox;
+    [SerializeField, Range(0.5f, 3f)] float attackSpeed = 1.5f;
 
     public bool IsAttacking => isAttacking;
 
@@ -21,6 +22,8 @@ public class CombatController : MonoBehaviour
 
     void Update()
     {
+        animator.SetFloat("AttackSpeed", attackSpeed);
+
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Locomotion") && isAttacking && !animator.IsInTransition(0))
         {
             ResetAttack();
