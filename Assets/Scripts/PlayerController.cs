@@ -59,10 +59,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Vector3 cameraForward = new Vector3(cameraTransform.forward.x, 0f, cameraTransform.forward.z).normalized;
-        Vector3 cameraRight = new Vector3(cameraTransform.right.x, 0f, cameraTransform.right.z).normalized;
-
-        Vector3 horizontal = (cameraRight * moveInput.x + cameraForward * moveInput.y).normalized * moveSpeed;
+        Vector3 horizontal = GetCameraRelativeDirection() * moveSpeed;
         Vector3 velocity = horizontal + Vector3.up * verticalVelocity;
 
         if (moveInput.sqrMagnitude > 0.01f)
@@ -117,9 +114,16 @@ public class PlayerController : MonoBehaviour
             dashTimer = dashDuration;
             nextDashTime = Time.time + dashCooldown;
 
-            Vector3 input = transform.right * moveInput.x + transform.forward * moveInput.y;
-            dashDirection = input.sqrMagnitude > 0.01f ? input.normalized : transform.forward;
+            dashDirection = moveInput.sqrMagnitude > 0.01f ? GetCameraRelativeDirection() : transform.forward;
         }
+    }
+
+    private Vector3 GetCameraRelativeDirection()
+    {
+        Vector3 cameraForward = new Vector3(cameraTransform.forward.x, 0f, cameraTransform.forward.z).normalized;
+        Vector3 cameraRight = new Vector3(cameraTransform.right.x, 0f, cameraTransform.right.z).normalized;
+
+        return (cameraRight * moveInput.x + cameraForward * moveInput.y).normalized;
     }
 
 }
