@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     private float nextAtackTime = 0;
 
     private CharacterController characterController;
+    private Animator animator;
     private Health health;
     private bool isKnockedBack;
     public GameObject player;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         health = GetComponent<Health>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void OnEnable()
@@ -38,6 +40,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        float targetSpeed = 0f;
+
         float distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         bool isOnRange = distanceFromPlayer <= atackRange;
 
@@ -45,7 +49,13 @@ public class Enemy : MonoBehaviour
             return;
 
         if (isOnRange) AtackPlayer();
-        else FollowPlayer();
+        else
+        {
+            FollowPlayer();
+            targetSpeed = 1f;
+        }
+
+        animator.SetFloat("Speed", targetSpeed, 0.1f, Time.deltaTime);
     }
 
     private void FollowPlayer()
@@ -67,7 +77,6 @@ public class Enemy : MonoBehaviour
 
         swordHitbox.SetActive(true);
         Invoke(nameof(DisableSwordHitbox), 0.2f);
-        Debug.Log("Atacou");
     }
 
     private void DisableSwordHitbox()

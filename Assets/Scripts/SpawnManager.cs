@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
             float xPosition = Random.Range(xSpawnLimitLeft, xSpawnLimitRight);
             float zPosition = Random.Range(zSpawnLimitBottom, zSpawnLimitTop);
 
-            Vector3 position = new Vector3(xPosition, 1.38f, zPosition);
+            Vector3 position = new Vector3(xPosition, transform.position.y, zPosition);
 
             GameObject enemy = Instantiate(enemyPrefab, position, enemyPrefab.transform.rotation);
             enemy.GetComponent<Enemy>().player = player;
