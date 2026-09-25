@@ -4,9 +4,8 @@ using UnityEngine;
 public class HitFeedback : MonoBehaviour
 {
     [SerializeField] private Health health;
-    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private SkinnedMeshRenderer meshRenderer;
     private Color originalColor;
-
 
     void Awake()
     {
@@ -31,7 +30,7 @@ public class HitFeedback : MonoBehaviour
     {
         meshRenderer.material.color = Color.Lerp(
             originalColor,
-            Color.white,
+            Color.red,
             0.3f
         );
         yield return new WaitForSeconds(0.1f);
